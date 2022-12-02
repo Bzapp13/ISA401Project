@@ -1,0 +1,30 @@
+pacman::p_load(tidyverse, rvest)
+
+# ---- 2019 ----
+step0_link = 'https://www.espn.com/mlb/attendance/_/year/2019'
+
+step1_table = read_html(step0_link)
+
+step2_table = html_elements(
+  x = step1_table,
+  css = '#my-teams-table > div > div > table'
+)
+
+
+step3_table_2019 = html_table(step2_table)[[1]]
+# [[]] changes step3_table from list of 1 --> 4 obs
+view(step3_table_2019)
+
+write_csv(step3_table_2019, 'M:\\ISA 401\\Data\\attendance_2019.csv')
+
+
+# ---- 2021 ----
+
+step0_link = 'https://www.espn.com/mlb/attendance/_/year/2021'
+
+step1_table = read_html(step0_link)
+
+step2_table = html_elements(
+  x = step1_table,
+  css = '#my-teams-table > div > div > table'
+)
